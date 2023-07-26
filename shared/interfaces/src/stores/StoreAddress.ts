@@ -1,10 +1,10 @@
 export type StoreAddress = {
-  addressLine1?: String
-  addressLine2?: String
-  city: String
-  country: String
-  countryName: String
-  postalCode?: String
-  state?: String
-  stateName?: String
+  addressLine1?: String;
+  addressLine2?: String;
+  city: String;
+  country: String;
+  countryName: String;
+  postalCode?: String;
+  state?: String;
+  stateName?: String;
 };

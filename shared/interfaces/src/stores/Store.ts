@@ -1,8 +1,8 @@
-import { StoreAddress } from "./StoreAddress";
+import { StoreAddress } from './StoreAddress';
 
 export type Store = {
-  id: Number
-  code: Number
-  address: StoreAddress
-  managerName: String
+  id: Number;
+  code: String;
+  address: StoreAddress;
+  managerName: String;
 };
