@@ -13,7 +13,9 @@
   "dependencies": {
     "tx-shared-middleware": "*",
     "tx-shared-server": "*",
-    "tx-shared-interfaces": "*"
+    "tx-shared-interfaces": "*",
+    "tx-shared-interceptors": "*",
+    "tx-shared-directives": "*"
   },
   "devDependencies": {}
 }

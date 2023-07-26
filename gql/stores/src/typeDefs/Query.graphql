@@ -1,4 +1,6 @@
+directive @list on FIELD_DEFINITION
+
 extend type Query {
   store(language: String!, input: StoreInput): Store
-  stores(language: String!, input: StoreInput): [Store]
+  stores(language: String!, input: StoreInput): [Store] @list
 }

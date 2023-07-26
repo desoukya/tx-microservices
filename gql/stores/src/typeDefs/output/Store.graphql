@@ -1,6 +1,6 @@
 type Store {
   id: Int!
-  code: Int!
+  code: String!
   address: StoreAddress!
   managerName: String!
 }

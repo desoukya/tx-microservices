@@ -1,5 +1,5 @@
 input CreateStoreInput {
-  code: Int!
+  code: String!
   address: CreateStoreAddressInput!
   managerName: String!
 }
