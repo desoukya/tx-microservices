@@ -1,5 +1,3 @@
 import { ResponseInterceptor } from './ResponseInterceptor';
 
-export { 
-  ResponseInterceptor,
-};
+export { ResponseInterceptor };

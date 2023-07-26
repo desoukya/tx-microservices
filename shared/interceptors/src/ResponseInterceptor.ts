@@ -3,10 +3,9 @@ import { Observable, map } from 'rxjs';
 // import { isEmpty } from 'lodash';
 // import { AppResponse } from 'tx-shared-interfaces';
 
-
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
-  constructor() { }
+  constructor() {}
   public intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     // get the express request object
     const req = context.switchToHttp().getRequest();
@@ -16,7 +15,7 @@ export class ResponseInterceptor implements NestInterceptor {
     // transform the response body
     return next.handle().pipe(
       map((body) => {
-        console.log('intercept body', body)
+        console.log('intercept body', body);
         // const data = Array.isArray(body) && !isEmpty(body) ? [...body] : body;
         // // const data = isNil(body) ? null : body;
 
