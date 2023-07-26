@@ -1,0 +1,16 @@
+{
+  "name": "tx-shared-middleware",
+  "version": "0.0.0",
+  "description": "Midlewares",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "tx-shared-interfaces": "*"
+  }
+}

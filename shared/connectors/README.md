@@ -1,0 +1,1 @@
+cosmos-connector for creating connection instances to cosmos. This implementation will use circuit-breakers to protect against ddos attacks and unusual request patterns.

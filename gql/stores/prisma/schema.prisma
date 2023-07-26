@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Store {
+  id Int @id @default(autoincrement())
+  code Int
+  address StoreAddress?
+  managerName String  
+}
+
+model StoreAddress {
+  id Int @id @default(autoincrement())
+  store Store @relation(fields: [storeId], references: [id])
+  storeId Int @unique
+  addressLine1 String?
+  addressLine2 String?
+  city String
+  country String
+  countryName String
+  postalCode String?
+  state String?
+  stateName String?
+
+  @@index([storeId])
+}

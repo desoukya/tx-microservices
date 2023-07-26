@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "noEmit": false,       // https://stackoverflow.com/a/66771530
+    "incremental": false, // https://stackoverflow.com/a/66771530
+    "skipLibCheck": true // https://github.com/nestjs/graphql/issues/1621#issuecomment-878199238,
+  },
+  "include": [
+    "./src",
+  ],
+  "exclude": ["node_modules"],
+}

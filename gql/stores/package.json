@@ -1,0 +1,19 @@
+{
+  "name": "tx-stores",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",    
+    "start": "NODE_ENV=local nest start --watch",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "tx-shared-middleware": "*",
+    "tx-shared-server": "*",
+    "tx-shared-interfaces": "*"
+  },
+  "devDependencies": {}
+}
