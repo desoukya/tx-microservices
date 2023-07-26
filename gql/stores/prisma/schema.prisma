@@ -10,7 +10,7 @@ generator client {
 
 model Store {
   id Int @id @default(autoincrement())
-  code Int
+  code String
   address StoreAddress?
   managerName String  
 }
