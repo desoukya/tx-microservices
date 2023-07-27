@@ -1,4 +1,3 @@
-import { Store } from './Store';
-import { StoreAddress } from './StoreAddress';
+import { CreateStoreDto } from './CreateStoreDto';
 
-export { Store, StoreAddress };
+export { CreateStoreDto };
