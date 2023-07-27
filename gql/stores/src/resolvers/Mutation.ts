@@ -9,7 +9,8 @@ import {
   Mutation,
 } from '@nestjs/graphql';
 import { StoresService } from '../services/stores.service';
-import { AppContext, Store } from 'tx-shared-interfaces';
+import { AppContext } from 'tx-shared-interfaces';
+import { Store as StoreModel } from '@prisma/client';
 
 @Resolver()
 export class StoresMutationResolver {
@@ -20,9 +21,8 @@ export class StoresMutationResolver {
     @Context() context: AppContext,
     @Info() info,
     @Args('language') language: string,
-    @Args('input') input: Omit<Store, 'id'>,
-  ): Promise<Store> {
-    console.log('stores mutation resolver', language, input);
+    @Args('input') input: Omit<StoreModel, 'id'>,
+  ): Promise<StoreModel> {
     return this.storesService.create(context, info, language, input);
   }
 }

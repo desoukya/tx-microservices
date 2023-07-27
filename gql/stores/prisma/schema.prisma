@@ -1,6 +1,6 @@
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_URL")
+  provider     = "postgresql"
+  url          = env("POSTGRES_URL")
   relationMode = "prisma"
 }
 
@@ -9,24 +9,22 @@ generator client {
 }
 
 model Store {
-  id Int @id @default(autoincrement())
-  code String
-  address StoreAddress?
-  managerName String  
+  id          Int           @id @default(autoincrement())
+  code        String        @unique
+  address     StoreAddress?
+  managerName String
 }
 
 model StoreAddress {
-  id Int @id @default(autoincrement())
-  store Store @relation(fields: [storeId], references: [id])
-  storeId Int @unique
+  id           Int     @id @default(autoincrement())
+  store        Store?  @relation(fields: [storeCode], references: [code])
+  storeCode    String  @unique
   addressLine1 String?
   addressLine2 String?
-  city String
-  country String
-  countryName String
-  postalCode String?
-  state String?
-  stateName String?
-
-  @@index([storeId])
+  city         String
+  country      String
+  countryName  String
+  postalCode   String?
+  state        String?
+  stateName    String?
 }

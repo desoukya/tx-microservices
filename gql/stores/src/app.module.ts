@@ -8,6 +8,7 @@ import { StoresMutationResolver } from './resolvers/Mutation';
 import { StoresService } from './services/stores.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
+import { PrismaConnector } from 'tx-shared-connectors';
 import { ListDirective } from 'tx-shared-directives';
 
 @Module({
@@ -40,6 +41,7 @@ import { ListDirective } from 'tx-shared-directives';
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
+    PrismaConnector,
   ],
 })
 export class StoresModule implements NestModule {

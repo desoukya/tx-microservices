@@ -1,53 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
-import { AppContext, Store } from 'tx-shared-interfaces';
-
-const sampleStore = Object.freeze({
-  id: 1,
-  address: {
-    country: 'US',
-    countryName: 'USA',
-    city: 'Washington DC',
-  },
-  managerName: 'Amr Desouky',
-});
+import { PrismaConnector } from 'tx-shared-connectors';
+import { AppContext } from 'tx-shared-interfaces';
+import { Store as StoreModel } from '@prisma/client';
 
 @Injectable()
 export class StoresService {
-  create(@Context() _context: AppContext, @Info() _info, language: string, input: Omit<Store, 'id'>): Promise<Store> {
-    console.log('creating store', language, input);
-    return new Promise((resolve) =>
-      resolve({
-        id: 1,
-        ...input,
-      }),
-    );
-  }
-
-  get(@Context() _context: AppContext, @Info() _info, language: string, input: Pick<Store, 'code'>): Promise<Store> {
-    console.log('get store', language, input);
-    return new Promise((resolve) =>
-      resolve({
-        code: input.code,
-        ...sampleStore,
-      }),
-    );
-  }
-
-  getMany(
+  constructor(private readonly db: PrismaConnector) {}
+  create(
     @Context() _context: AppContext,
     @Info() _info,
-    language: string,
-    input: Pick<Store, 'code'>,
-  ): Promise<Store[]> {
-    console.log('get many stores', language, input);
-    return new Promise((resolve) =>
-      resolve([
-        {
-          code: input.code,
-          ...sampleStore,
-        },
-      ]),
-    );
+    _language: string,
+    input: Omit<StoreModel, 'id'>,
+  ): Promise<StoreModel> {
+    return this.db.store.create({ data: input });
+  }
+
+  get(
+    @Context() _context: AppContext,
+    @Info() _info,
+    _language: string,
+    input: Pick<StoreModel, 'code'>,
+  ): Promise<StoreModel> {
+    return this.db.store.findUnique({
+      where: { code: input.code },
+    });
+  }
+
+  getMany(@Context() _context: AppContext, @Info() _info, _language: string): Promise<StoreModel[]> {
+    return this.db.store.findMany();
   }
 }

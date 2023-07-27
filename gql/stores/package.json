@@ -8,9 +8,13 @@
     "build": "tsc --build",
     "clean": "tsc --build --clean",    
     "start": "NODE_ENV=local nest start --watch",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "db:migrate": "NODE_ENV=local prisma migrate dev",
+    "db:generate": "NODE_ENV=local prisma generate",
+    "db:format": "NODE_ENV=local prisma format"
   },
   "dependencies": {
+    "tx-shared-connectors": "*",
     "tx-shared-middleware": "*",
     "tx-shared-server": "*",
     "tx-shared-interfaces": "*",

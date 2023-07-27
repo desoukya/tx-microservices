@@ -9,7 +9,8 @@ import {
   Info,
 } from '@nestjs/graphql';
 import { StoresService } from '../services/stores.service';
-import { AppContext, Store } from 'tx-shared-interfaces';
+import { AppContext } from 'tx-shared-interfaces';
+import { Store as StoreModel } from '@prisma/client';
 
 @Resolver()
 export class StoresQueryResolver {
@@ -20,10 +21,8 @@ export class StoresQueryResolver {
     @Context() context: AppContext,
     @Info() info,
     @Args('language') language: string,
-    @Args('input') input: Pick<Store, 'code'>,
-  ): Promise<Store> {
-    console.log('store query resolver', language, input);
-    // console.log('info', JSON.stringify(info))
+    @Args('input') input: Pick<StoreModel, 'code'>,
+  ): Promise<StoreModel> {
     return this.storesService.get(context, info, language, input);
   }
 
@@ -32,12 +31,9 @@ export class StoresQueryResolver {
     @Context() context: AppContext,
     @Info() info,
     @Args('language') language: string,
-    @Args('input') input: Pick<Store, 'code'>,
     // @Args('first') _first: number,
     // @Args('skip') _skip: number,
-  ): Promise<Store[]> {
-    console.log('stores get many query resolver', language, input);
-    console.log('info', JSON.stringify(info));
-    return this.storesService.getMany(context, info, language, input);
+  ): Promise<StoreModel[]> {
+    return this.storesService.getMany(context, info, language);
   }
 }
