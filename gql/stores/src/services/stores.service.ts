@@ -8,7 +8,7 @@ import { CreateStoreDto } from 'tx-shared-interfaces';
 
 @Injectable()
 export class StoresService {
-  constructor(private readonly db: PrismaConnector) {}
+  constructor(private readonly db: PrismaConnector) { }
   create(
     @Context() _context: AppContext,
     @Info() _info,
@@ -43,7 +43,16 @@ export class StoresService {
     });
   }
 
-  getMany(@Context() _context: AppContext, @Info() _info, _language: string): Promise<StoreModel[]> {
-    return this.db.store.findMany({ include: { address: true } });
+  getMany(
+    @Context() _context: AppContext,
+    @Info() _info, _language: string,
+    @Args('skip') skip: number,
+    @Args('take') take: number,
+  ): Promise<StoreModel[]> {
+    return this.db.store.findMany({
+      skip,
+      take,
+      include: { address: true }
+    });
   }
 }

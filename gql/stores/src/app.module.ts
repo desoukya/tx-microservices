@@ -9,7 +9,7 @@ import { StoresService } from './services/stores.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
 import { PrismaConnector } from 'tx-shared-connectors';
-import { ListDirective } from 'tx-shared-directives';
+import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
 
 @Module({
   imports: [
@@ -18,19 +18,21 @@ import { ListDirective } from 'tx-shared-directives';
       driver: ApolloFederationDriver,
       typePaths: ['**/*.graphql'],
       context: ({ req, res }) => ({ req, res }),
-      // formatResponse: (response) => ({ ...response, pagination: { page: 1, perPage: 100 } })
-      formatResponse: (response) => {
-        console.log('formatResponse', response);
-        if (!response.extensions) {
+      formatResponse: (response, request) => {
+        console.log(request?.request.variables);
+        // @TODO only return this for queries that return a list
+        if (!response.extensions && response?.data) {
+          const { skip = PAGE_OFFSET + 1, take = PAGE_SIZE } = request?.request.variables;
+          const page = Math.floor(skip / take) + 1;
+          const perPage = take;
           response.extensions = {
-            pagination: { page: 1, perPage: 100 },
+            pagination: { page, perPage },
+            code_version: '0.1.0',
           };
         }
-        response.extensions.code_version = '10.9.0';
         return response;
       },
       introspection: false,
-      transformSchema: (schema) => ListDirective(schema, 'list'),
     }),
   ],
   providers: [

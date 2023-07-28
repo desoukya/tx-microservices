@@ -9,8 +9,9 @@ import {
   Info,
 } from '@nestjs/graphql';
 import { StoresService } from '../services/stores.service';
-import { AppContext } from 'tx-shared-interfaces';
+import { AppContext} from 'tx-shared-interfaces';
 import { Store as StoreModel } from '@prisma/client';
+import { PAGE_OFFSET, PAGE_SIZE } from '../constants/pagination';
 
 @Resolver()
 export class StoresQueryResolver {
@@ -31,9 +32,9 @@ export class StoresQueryResolver {
     @Context() context: AppContext,
     @Info() info,
     @Args('language') language: string,
-    // @Args('first') _first: number,
-    // @Args('skip') _skip: number,
+    @Args('skip') skip: number = PAGE_OFFSET,
+    @Args('take') take: number = PAGE_SIZE,
   ): Promise<StoreModel[]> {
-    return this.storesService.getMany(context, info, language);
+    return this.storesService.getMany(context, info, language, skip, take);
   }
 }

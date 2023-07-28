@@ -2,5 +2,5 @@ directive @list on FIELD_DEFINITION
 
 extend type Query {
   store(language: String!, input: StoreInput): Store
-  stores(language: String!): [Store] @list
+  stores(language: String!, skip: Int, take: Int): [Store] @list
 }
