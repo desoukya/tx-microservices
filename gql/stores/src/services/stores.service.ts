@@ -8,26 +8,26 @@ import { CreateStoreDto } from 'tx-shared-interfaces';
 
 @Injectable()
 export class StoresService {
-  constructor(private readonly db: PrismaConnector) { }
+  constructor(private readonly db: PrismaConnector) {}
   create(
     @Context() _context: AppContext,
     @Info() _info,
     _language: string,
     @Args('input') input: CreateStoreDto,
   ): Promise<StoreModel> {
-    console.log('[createStore service]', input)
+    console.log('[createStore service]', input);
     const { code, managerName, address } = input;
-    return this.db.store.create({ 
+    return this.db.store.create({
       data: {
         code,
         managerName,
         address: {
-          create: { ...address }
-        }
+          create: { ...address },
+        },
       },
       include: {
-        address: true
-      }
+        address: true,
+      },
     });
   }
 
@@ -39,11 +39,11 @@ export class StoresService {
   ): Promise<StoreModel> {
     return this.db.store.findUnique({
       where: { code: input.code },
-      include: { address: true }      
+      include: { address: true },
     });
   }
 
   getMany(@Context() _context: AppContext, @Info() _info, _language: string): Promise<StoreModel[]> {
-    return this.db.store.findMany({ include: { address: true }});
+    return this.db.store.findMany({ include: { address: true } });
   }
 }

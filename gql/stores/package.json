@@ -11,7 +11,8 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "db:migrate": "NODE_ENV=local prisma migrate dev",
     "db:generate": "NODE_ENV=local prisma generate",
-    "db:format": "NODE_ENV=local prisma format"
+    "db:format": "NODE_ENV=local prisma format",
+    "db:seed": "NODE_ENV=local ts-node prisma/seed.ts"
   },
   "dependencies": {
     "tx-shared-connectors": "*",

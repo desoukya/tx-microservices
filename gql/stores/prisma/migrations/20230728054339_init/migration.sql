@@ -28,3 +28,6 @@ CREATE UNIQUE INDEX "Store_code_key" ON "Store"("code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "StoreAddress_storeCode_key" ON "StoreAddress"("storeCode");
+
+-- AddForeignKey
+ALTER TABLE "StoreAddress" ADD CONSTRAINT "StoreAddress_storeCode_fkey" FOREIGN KEY ("storeCode") REFERENCES "Store"("code") ON DELETE CASCADE ON UPDATE CASCADE;

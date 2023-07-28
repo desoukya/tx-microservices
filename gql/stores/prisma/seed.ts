@@ -7,18 +7,19 @@ async function main() {
 
   console.log('Seeding...');
 
-  const user1 = await prisma.store.create({
+  const store = await prisma.store.create({
     data: {
-      code: '378',
+      code: '120',
+      managerName: 'Amr Desouky',
       address: {
-        city: 'Washington',
-        country: 'US',
-        countryName: 'USA',
+        create: { country: 'US', state: 'AL', stateName: 'Alabama', countryName: 'USA', city: 'Huntsville' },
       },
-      managerName: 'Amr Desouky'
+    },
+    include: {
+      address: true,
     },
   });
-  console.log({ user1 });
+  console.log({ store });
 }
 
 main()
