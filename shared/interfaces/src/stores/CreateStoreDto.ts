@@ -4,4 +4,4 @@ export class CreateStoreDto {
   code: string;
   managerName: string;
   address: Prisma.StoreAddressCreateInput;
-};
+}
