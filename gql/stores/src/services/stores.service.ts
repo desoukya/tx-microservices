@@ -2,13 +2,13 @@ import { Args } from '@nestjs/graphql';
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
 import { PrismaConnector } from 'tx-shared-connectors';
-import { AppContext } from 'tx-shared-interfaces';
+import { AppContext, CreateStoreDto, UpdateStoreDto } from 'tx-shared-interfaces';
 import { Store as StoreModel } from '@prisma/client';
-import { CreateStoreDto } from 'tx-shared-interfaces';
 
 @Injectable()
 export class StoresService {
   constructor(private readonly db: PrismaConnector) {}
+
   create(
     @Context() _context: AppContext,
     @Info() _info,
@@ -23,6 +23,31 @@ export class StoresService {
         managerName,
         address: {
           create: { ...address },
+        },
+      },
+      include: {
+        address: true,
+      },
+    });
+  }
+
+  update(
+    @Context() _context: AppContext,
+    @Info() _info,
+    _language: string,
+    @Args('input') input: UpdateStoreDto,
+  ): Promise<StoreModel> {
+    console.log('[updateStore service]', input);
+    const { code, managerName, address } = input;
+    return this.db.store.update({
+      where: {
+        code: input.code,
+      },
+      data: {
+        code,
+        managerName,
+        address: {
+          update: { ...address },
         },
       },
       include: {

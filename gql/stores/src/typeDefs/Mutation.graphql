@@ -1,3 +1,4 @@
 extend type Mutation {
   createStore(language: String!, input: CreateStoreInput!): Store
+  updateStore(language: String!, input: UpdateStoreInput!): Store
 }

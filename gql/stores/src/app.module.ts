@@ -21,7 +21,11 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
       formatResponse: (response, request) => {
         console.log(request?.request.variables);
         // @TODO only return this for queries that return a list
-        if (!response.extensions && response?.data) {
+        console.log('response?.data', response?.data);
+        if (
+          response?.data &&
+          Object.keys(response?.data).some((propertyName) => Array.isArray(response?.data[propertyName]))
+        ) {
           const { skip = PAGE_OFFSET + 1, take = PAGE_SIZE } = request?.request.variables;
           const page = Math.floor(skip / take) + 1;
           const perPage = take;

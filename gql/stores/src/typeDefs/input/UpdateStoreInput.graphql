@@ -1,0 +1,5 @@
+input UpdateStoreInput {
+  code: String!
+  address: CreateStoreAddressInput
+  managerName: String
+}
