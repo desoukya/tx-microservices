@@ -1,0 +1,4 @@
+type Store {
+  id: Int!
+  name: String!
+}

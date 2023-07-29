@@ -1,0 +1,6 @@
+directive @list on FIELD_DEFINITION
+
+extend type Query {
+  customer(language: String!, input: CustomerInput): Customer
+  customers(language: String!, skip: Int, take: Int): [Customer] @list
+}

@@ -1,0 +1,4 @@
+extend type Mutation {
+  createCustomer(language: String!, input: CreateCustomerInput!): Customer
+  updateCustomer(language: String!, input: UpdateCustomerInput!): Customer
+}

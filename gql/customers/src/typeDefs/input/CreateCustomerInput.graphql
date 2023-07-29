@@ -1,0 +1,4 @@
+input CreateCustomerInput {
+  code: String!
+  name: String!
+}

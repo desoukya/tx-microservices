@@ -1,0 +1,4 @@
+input UpdateCustomerInput {
+  code: String!
+  name: String
+}
