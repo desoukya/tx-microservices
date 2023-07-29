@@ -9,7 +9,7 @@ import {
   Info,
 } from '@nestjs/graphql';
 import { StoresService } from '../services/stores.service';
-import { AppContext} from 'tx-shared-interfaces';
+import { AppContext } from 'tx-shared-interfaces';
 import { Store as StoreModel } from '@prisma/client';
 import { PAGE_OFFSET, PAGE_SIZE } from '../constants/pagination';
 
