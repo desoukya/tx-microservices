@@ -17,7 +17,7 @@ export class PrismaConnector implements OnModuleInit {
   }
   async onModuleInit() {
     console.log('this.serviceName', this.serviceName);
-    const prismaClient = new this.prismaClients[this.serviceName];
+    const prismaClient = new this.prismaClients[this.serviceName]();
     await prismaClient.$connect();
   }
 }

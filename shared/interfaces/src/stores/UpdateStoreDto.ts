@@ -1,15 +1,15 @@
 // import { Prisma } from '@prisma/client';
 
 class StoreAddressUpdateInput {
-  addressLine1?: string | null
-  addressLine2?: string | null
-  city?: string | null
-  country?: string | null
-  countryName?: string | null
-  postalCode?: string | null
-  state?: string | null
-  stateName?: string | null
-  // store?: StoreCreateNestedOneWithoutAddressInput    
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  country?: string | null;
+  countryName?: string | null;
+  postalCode?: string | null;
+  state?: string | null;
+  stateName?: string | null;
+  // store?: StoreCreateNestedOneWithoutAddressInput
 }
 export class UpdateStoreDto {
   code: string;
@@ -35,5 +35,5 @@ export class UpdateStoreDto {
 //   countryName?: string
 //   postalCode?: string | null
 //   state?: string | null
-//   stateName?: string | null  
+//   stateName?: string | null
 // }

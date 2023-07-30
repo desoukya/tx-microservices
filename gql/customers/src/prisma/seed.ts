@@ -12,7 +12,7 @@ async function main() {
   const customer = await prisma.customer.create({
     data: {
       name: 'Amr Desouky',
-    }
+    },
   });
   console.log({ customer });
 }
