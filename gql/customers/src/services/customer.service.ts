@@ -1,11 +1,8 @@
 import { Args } from '@nestjs/graphql';
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
-// import { PrismaConnector } from 'tx-shared-connectors';
 import { PrismaConnector } from '../prisma/prisma.service';
 import { AppContext, CreateCustomerDto, UpdateCustomerDto } from 'tx-shared-interfaces';
-// import { Customer as CustomerModel } from '@tx/connectors/prisma';
-// import { Customer as CustomerModel } from '../prisma/generated/client';
 import { Customer as CustomerModel } from '@prisma/customers';
 
 @Injectable()
@@ -18,7 +15,6 @@ export class CustomerService {
     _language: string,
     @Args('input') input: CreateCustomerDto,
   ): Promise<CustomerModel> {
-    console.log('[createStore service]', input);
     const { name } = input;
     return this.db.customer.create({
       data: {
@@ -33,7 +29,6 @@ export class CustomerService {
     _language: string,
     @Args('input') input: UpdateCustomerDto,
   ): Promise<CustomerModel> {
-    console.log('[updateStore service]', input);
     const { id, name } = input;
     return this.db.customer.update({
       where: {

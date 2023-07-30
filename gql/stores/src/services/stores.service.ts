@@ -1,11 +1,8 @@
 import { Args } from '@nestjs/graphql';
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
-// import { PrismaConnector } from 'tx-shared-connectors';
 import { PrismaConnector } from '../prisma/prisma.service';
 import { AppContext, CreateStoreDto, UpdateStoreDto } from 'tx-shared-interfaces';
-// import { Store as StoreModel } from '@tx/connectors/prisma';
-// import { Store as StoreModel } from '../prisma/generated/client';
 import { Store as StoreModel } from '@prisma/stores';
 
 @Injectable()
@@ -18,7 +15,6 @@ export class StoresService {
     _language: string,
     @Args('input') input: CreateStoreDto,
   ): Promise<StoreModel> {
-    console.log('[createStore service]', input);
     const { code, managerName, address } = input;
     return this.db.store.create({
       data: {
@@ -40,15 +36,13 @@ export class StoresService {
     _language: string,
     @Args('input') input: UpdateStoreDto,
   ): Promise<StoreModel> {
-    console.log('[updateStore service]', input);
-    const { code, managerName, address } = input;
+    const { id, address, ...rest } = input;
     return this.db.store.update({
       where: {
-        code: input.code,
+        id,
       },
       data: {
-        code,
-        managerName,
+        ...rest,
         address: {
           update: { ...address },
         },
@@ -63,10 +57,10 @@ export class StoresService {
     @Context() _context: AppContext,
     @Info() _info,
     _language: string,
-    input: Pick<StoreModel, 'code'>,
+    input: Pick<StoreModel, 'id'>,
   ): Promise<StoreModel> {
     return this.db.store.findUnique({
-      where: { code: input.code },
+      where: { id: input.id },
       include: { address: true },
     });
   }

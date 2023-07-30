@@ -1,7 +1,6 @@
 import { Args } from '@nestjs/graphql';
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
-// import { PrismaConnector } from 'tx-shared-connectors';
 import { PrismaConnector } from '../prisma/prisma.service';
 import { AppContext, CreateOrderDto, UpdateOrderDto } from 'tx-shared-interfaces';
 import { Order as OrderModel } from '@prisma/orders';
@@ -16,7 +15,6 @@ export class OrderService {
     _language: string,
     @Args('input') input: CreateOrderDto,
   ): Promise<OrderModel> {
-    console.log('[createOrder service]', input);
     return this.db.order.create({
       data: {
         ...input,
@@ -30,7 +28,6 @@ export class OrderService {
     _language: string,
     @Args('input') input: UpdateOrderDto,
   ): Promise<OrderModel> {
-    console.log('[updateOrder service]', input);
     const { id, ...rest } = input;
     return this.db.order.update({
       where: {

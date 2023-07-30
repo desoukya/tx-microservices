@@ -1,5 +1,3 @@
-// import { PrismaClient } from '@prisma/client';
-// import { PrismaClient } from '../prisma/generated/client';
 import { PrismaClient } from '@prisma/inventories';
 
 const prisma = new PrismaClient();

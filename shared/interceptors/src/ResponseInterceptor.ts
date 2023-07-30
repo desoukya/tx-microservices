@@ -6,16 +6,15 @@ import { Observable, map } from 'rxjs';
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   constructor() {}
-  public intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  public intercept(_context: ExecutionContext, next: CallHandler): Observable<any> {
     // get the express request object
-    const req = context.switchToHttp().getRequest();
-    console.log('req', req);
-    console.log('req.headers', req?.headers);
+    // const req = context.switchToHttp().getRequest();
+    // console.log('req.headers', req?.headers);
 
     // transform the response body
     return next.handle().pipe(
       map((body) => {
-        console.log('intercept body', body);
+        // console.log('intercept body', body);
         // const data = Array.isArray(body) && !isEmpty(body) ? [...body] : body;
         // // const data = isNil(body) ? null : body;
 

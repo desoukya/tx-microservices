@@ -10,7 +10,7 @@ CREATE TABLE "Store" (
 -- CreateTable
 CREATE TABLE "StoreAddress" (
     "id" TEXT NOT NULL,
-    "storeCode" TEXT NOT NULL,
+    "storeId" TEXT NOT NULL,
     "addressLine1" TEXT,
     "addressLine2" TEXT,
     "city" TEXT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "StoreAddress" (
 CREATE UNIQUE INDEX "Store_code_key" ON "Store"("code");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "StoreAddress_storeCode_key" ON "StoreAddress"("storeCode");
+CREATE UNIQUE INDEX "StoreAddress_storeId_key" ON "StoreAddress"("storeId");
 
 -- AddForeignKey
-ALTER TABLE "StoreAddress" ADD CONSTRAINT "StoreAddress_storeCode_fkey" FOREIGN KEY ("storeCode") REFERENCES "Store"("code") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "StoreAddress" ADD CONSTRAINT "StoreAddress_storeId_fkey" FOREIGN KEY ("storeId") REFERENCES "Store"("id") ON DELETE CASCADE ON UPDATE CASCADE;

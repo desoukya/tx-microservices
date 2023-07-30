@@ -20,8 +20,8 @@ model Store {
 
 model StoreAddress {
   id           String  @id @default(uuid())
-  store        Store?  @relation(fields: [storeCode], references: [code], onDelete: Cascade)
-  storeCode    String  @unique
+  store        Store?  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeId      String  @unique
   addressLine1 String?
   addressLine2 String?
   city         String

@@ -1,13 +1,4 @@
-import {
-  Args,
-  // ID,
-  // Parent,
-  // ResolveField,
-  Resolver,
-  Context,
-  Info,
-  Mutation,
-} from '@nestjs/graphql';
+import { Args, Resolver, Context, Info, Mutation } from '@nestjs/graphql';
 import { OrderService } from '../services/order.service';
 import { AppContext } from 'tx-shared-interfaces';
 import { Order as OrderModel } from '@prisma/orders';

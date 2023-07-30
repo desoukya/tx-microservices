@@ -1,5 +1,3 @@
-// import { Prisma } from '@prisma/client';
-
 class StoreAddressCreateInput {
   addressLine1?: string | null;
   addressLine2?: string | null;

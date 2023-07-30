@@ -1,23 +1,14 @@
-import {
-  Args,
-  // ID,
-  // Parent,
-  Query,
-  // ResolveField,
-  Resolver,
-  Context,
-  Info,
-} from '@nestjs/graphql';
+import { Args, Query, ResolveReference, Resolver, Context, Info } from '@nestjs/graphql';
 import { InventoryService } from '../services/inventory.service';
 import { AppContext } from 'tx-shared-interfaces';
 import { Inventory as InventoryModel } from '@prisma/inventories';
 import { PAGE_OFFSET, PAGE_SIZE } from '../constants/pagination';
 
-@Resolver()
+@Resolver('Inventory')
 export class StoresQueryResolver {
   constructor(private readonly inventoryService: InventoryService) {}
 
-  @Query('inventory')
+  @Query()
   inventory(
     @Context() context: AppContext,
     @Info() info,
@@ -27,7 +18,7 @@ export class StoresQueryResolver {
     return this.inventoryService.get(context, info, language, input);
   }
 
-  @Query('inventories')
+  @Query()
   inventories(
     @Context() context: AppContext,
     @Info() info,
@@ -36,5 +27,10 @@ export class StoresQueryResolver {
     @Args('take') take: number = PAGE_SIZE,
   ): Promise<InventoryModel[]> {
     return this.inventoryService.getMany(context, info, language, skip, take);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: string }) {
+    return this.inventoryService.get(null, null, null, { id: reference.id });
   }
 }

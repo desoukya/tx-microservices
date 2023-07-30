@@ -13,7 +13,7 @@ import { GraphQLModule } from '@nestjs/graphql';
             { name: 'stores', url: 'http://localhost:3020/graphql' },
             { name: 'customers', url: 'http://localhost:3030/graphql' },
             { name: 'inventories', url: 'http://localhost:3040/graphql' },
-            // { name: 'orders', url: 'http://localhost:3080/graphql' },
+            { name: 'orders', url: 'http://localhost:3050/graphql' },
           ],
         }),
       },

@@ -8,7 +8,6 @@ import { StoresMutationResolver } from './resolvers/Mutation';
 import { InventoryService } from './services/inventory.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
-// import { PrismaConnector } from 'tx-shared-connectors';
 import { PrismaConnector } from './prisma/prisma.service';
 import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
 
@@ -20,9 +19,6 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
       typePaths: ['**/*.graphql'],
       context: ({ req, res }) => ({ req, res }),
       formatResponse: (response, request) => {
-        console.log(request?.request.variables);
-        // @TODO only return this for queries that return a list
-        console.log('response?.data', response?.data);
         if (
           response?.data &&
           Object.keys(response?.data).some((propertyName) => Array.isArray(response?.data[propertyName]))
@@ -49,12 +45,6 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
       useClass: ResponseInterceptor,
     },
     PrismaConnector,
-    // {
-    //   provide: 'CONNECTION',
-    //   useFactory: () => {
-    //     return new PrismaConnector('inventories');
-    //   },
-    // }
   ],
 })
 export class InventoryModule implements NestModule {

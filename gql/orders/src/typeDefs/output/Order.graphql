@@ -1,4 +1,4 @@
-type Order {
+type Order @key(fields: "id") {
   id: String!
   customerId: String!
   inventoryId: String!
@@ -7,4 +7,22 @@ type Order {
   status: String!
   createDate: String!
   updateDate: String!
+  inventory: Inventory
+  store: Store
+  customer: Customer
+}
+
+extend type Inventory @key(fields: "id") {
+  id: String! @external
+  inventory: Inventory
+}
+
+extend type Store @key(fields: "id") {
+  id: String! @external
+  store: Store
+}
+
+extend type Customer @key(fields: "id") {
+  id: String! @external
+  customer: Customer
 }

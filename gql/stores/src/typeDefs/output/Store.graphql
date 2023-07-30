@@ -1,4 +1,4 @@
-type Store {
+type Store @key(fields: "id") {
   id: String!
   code: String!
   address: StoreAddress!

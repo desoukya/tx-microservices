@@ -1,13 +1,4 @@
-import {
-  Args,
-  // ID,
-  // Parent,
-  // ResolveField,
-  Resolver,
-  Context,
-  Info,
-  Mutation,
-} from '@nestjs/graphql';
+import { Args, Resolver, Context, Info, Mutation } from '@nestjs/graphql';
 import { InventoryService } from '../services/inventory.service';
 import { AppContext } from 'tx-shared-interfaces';
 import { Inventory as InventoryModel } from '@prisma/inventories';

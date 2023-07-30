@@ -1,25 +1,14 @@
-import {
-  Args,
-  // ID,
-  // Parent,
-  Query,
-  // ResolveField,
-  Resolver,
-  Context,
-  Info,
-} from '@nestjs/graphql';
+import { Args, Query, ResolveReference, Resolver, Context, Info } from '@nestjs/graphql';
 import { CustomerService } from '../services/customer.service';
 import { AppContext } from 'tx-shared-interfaces';
-// import { Customer as CustomerModel } from '@prisma/client';
-// import { Customer as CustomerModel } from '../prisma/generated/client';
 import { Customer as CustomerModel } from '@prisma/customers';
 import { PAGE_OFFSET, PAGE_SIZE } from '../constants/pagination';
 
-@Resolver()
+@Resolver('Customer')
 export class StoresQueryResolver {
   constructor(private readonly customerService: CustomerService) {}
 
-  @Query('customer')
+  @Query()
   customer(
     @Context() context: AppContext,
     @Info() info,
@@ -29,7 +18,7 @@ export class StoresQueryResolver {
     return this.customerService.get(context, info, language, input);
   }
 
-  @Query('customers')
+  @Query()
   customers(
     @Context() context: AppContext,
     @Info() info,
@@ -38,5 +27,10 @@ export class StoresQueryResolver {
     @Args('take') take: number = PAGE_SIZE,
   ): Promise<CustomerModel[]> {
     return this.customerService.getMany(context, info, language, skip, take);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: string }) {
+    return this.customerService.get(null, null, null, { id: reference.id });
   }
 }
