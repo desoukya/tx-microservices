@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Store" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "code" TEXT NOT NULL,
     "managerName" TEXT NOT NULL,
 
@@ -9,7 +9,7 @@ CREATE TABLE "Store" (
 
 -- CreateTable
 CREATE TABLE "StoreAddress" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "storeCode" TEXT NOT NULL,
     "addressLine1" TEXT,
     "addressLine2" TEXT,

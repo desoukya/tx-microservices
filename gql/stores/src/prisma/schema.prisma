@@ -4,19 +4,22 @@ datasource db {
   relationMode = "foreignKeys"
 }
 
+// https://github.com/prisma/prisma/issues/7470#issuecomment-873598065
 generator client {
   provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/stores"
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
 model Store {
-  id          Int           @id @default(autoincrement())
+  id          String        @id @default(uuid())
   code        String        @unique
   address     StoreAddress?
   managerName String
 }
 
 model StoreAddress {
-  id           Int     @id @default(autoincrement())
+  id           String  @id @default(uuid())
   store        Store?  @relation(fields: [storeCode], references: [code], onDelete: Cascade)
   storeCode    String  @unique
   addressLine1 String?

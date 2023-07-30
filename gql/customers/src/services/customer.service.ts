@@ -1,13 +1,16 @@
 import { Args } from '@nestjs/graphql';
 import { Injectable } from '@nestjs/common';
 import { Context, Info } from '@nestjs/graphql';
-import { PrismaConnector } from 'tx-shared-connectors';
+// import { PrismaConnector } from 'tx-shared-connectors';
+import { PrismaConnector } from '../prisma/prisma.service';
 import { AppContext, CreateCustomerDto, UpdateCustomerDto } from 'tx-shared-interfaces';
-import { Customer as CustomerModel } from '@prisma/client';
+// import { Customer as CustomerModel } from '@tx/connectors/prisma';
+// import { Customer as CustomerModel } from '../prisma/generated/client';
+import { Customer as CustomerModel } from '@prisma/customers';
 
 @Injectable()
 export class CustomerService {
-  constructor(private readonly db: PrismaConnector) {}
+  constructor(private db: PrismaConnector) {}
 
   create(
     @Context() _context: AppContext,

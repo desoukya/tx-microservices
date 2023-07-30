@@ -5,10 +5,11 @@ import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/ap
 import { GraphQLModule } from '@nestjs/graphql';
 import { StoresQueryResolver } from './resolvers/Query';
 import { StoresMutationResolver } from './resolvers/Mutation';
-import { StoresService } from './services/customer.service';
+import { CustomerService } from './services/customer.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
-import { PrismaConnector } from 'tx-shared-connectors';
+// import { PrismaConnector } from 'tx-shared-connectors';
+import { PrismaConnector } from './prisma/prisma.service';
 import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
 
 @Module({
@@ -42,12 +43,18 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
   providers: [
     StoresQueryResolver,
     StoresMutationResolver,
-    StoresService,
+    CustomerService,
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
     PrismaConnector,
+    // {
+    //   provide: 'CONNECTION',
+    //   useFactory: () => {
+    //     return new PrismaConnector('customers');
+    //   },
+    // }
   ],
 })
 export class StoresModule implements NestModule {

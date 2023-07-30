@@ -10,7 +10,9 @@ import {
 } from '@nestjs/graphql';
 import { StoresService } from '../services/stores.service';
 import { AppContext } from 'tx-shared-interfaces';
-import { Store as StoreModel } from '@prisma/client';
+// import { Store as StoreModel } from '@prisma/client';
+// import { Store as StoreModel } from '../prisma/generated/client';
+import { Store as StoreModel } from '@prisma/stores';
 import { CreateStoreDto, UpdateStoreDto } from 'tx-shared-interfaces';
 
 @Resolver()

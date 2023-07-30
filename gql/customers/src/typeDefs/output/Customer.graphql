@@ -1,4 +1,4 @@
-type Store {
-  id: Int!
+type Customer {
+  id: String!
   name: String!
 }

@@ -1,4 +1,4 @@
 export class UpdateCustomerDto {
-  code: string;
+  id: string;
   name?: string;
 }

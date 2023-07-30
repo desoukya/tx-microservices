@@ -10,7 +10,9 @@ import {
 } from '@nestjs/graphql';
 import { CustomerService } from '../services/customer.service';
 import { AppContext } from 'tx-shared-interfaces';
-import { Customer as CustomerModel } from '@prisma/client';
+// import { Customer as CustomerModel } from '@prisma/client';
+// import { Customer as CustomerModel } from '../prisma/generated/client';
+import { Customer as CustomerModel } from '@prisma/customers';
 import { PAGE_OFFSET, PAGE_SIZE } from '../constants/pagination';
 
 @Resolver()

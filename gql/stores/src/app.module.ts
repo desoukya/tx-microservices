@@ -8,7 +8,8 @@ import { StoresMutationResolver } from './resolvers/Mutation';
 import { StoresService } from './services/stores.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
-import { PrismaConnector } from 'tx-shared-connectors';
+// import { PrismaConnector } from 'tx-shared-connectors';
+import { PrismaConnector } from './prisma/prisma.service';
 import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
 
 @Module({
@@ -47,6 +48,12 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
+    // {
+    //   provide: 'CONNECTION',
+    //   useFactory: () => {
+    //     return new PrismaConnector('stores');
+    //   },
+    // }
     PrismaConnector,
   ],
 })
