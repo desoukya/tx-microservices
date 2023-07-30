@@ -6,6 +6,7 @@ The selected architecture for the candy store project consists of GraphQL micros
 - Apollo GraphQL
 - Nodejs
 - Nestjs
+- Prisma
 - Postgres
 - Lerna/Nx
 
