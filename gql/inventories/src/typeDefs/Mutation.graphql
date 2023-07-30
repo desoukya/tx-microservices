@@ -1,0 +1,4 @@
+extend type Mutation {
+  createInventory(language: String!, input: CreateInventoryInput!): Inventory
+  updateInventory(language: String!, input: UpdateInventoryInput!): Inventory
+}

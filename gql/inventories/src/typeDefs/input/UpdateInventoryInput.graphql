@@ -1,0 +1,5 @@
+input UpdateInventoryInput {
+  id: String!
+  name: String
+  availableQuantity: Int
+}

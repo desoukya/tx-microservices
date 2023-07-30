@@ -1,0 +1,6 @@
+type Inventory {
+  id: String!
+  name: String!
+  manufactureDate: String!
+  availableQuantity: Int!
+}

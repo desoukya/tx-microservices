@@ -1,0 +1,26 @@
+{
+  "name": "tx-inventories",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",    
+    "start": "NODE_ENV=local nest start --watch",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "db:migrate": "NODE_ENV=local prisma migrate dev --schema=./src/prisma/schema.prisma",
+    "db:generate": "NODE_ENV=local prisma generate --schema=./src/prisma/schema.prisma",
+    "db:format": "NODE_ENV=local prisma format --schema=./src/prisma/schema.prisma",
+    "db:seed": "NODE_ENV=local ts-node src/prisma/seed.ts"
+  },
+  "dependencies": {
+    "tx-shared-connectors": "*",
+    "tx-shared-middleware": "*",
+    "tx-shared-server": "*",
+    "tx-shared-interfaces": "*",
+    "tx-shared-interceptors": "*",
+    "tx-shared-directives": "*"
+  },
+  "devDependencies": {}
+}

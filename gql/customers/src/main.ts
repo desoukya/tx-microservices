@@ -1,4 +1,4 @@
-import { StoresModule } from './app.module';
+import { CustomersModule } from './app.module';
 import { createServer } from 'tx-shared-server';
 
-createServer(StoresModule, process.env.PORT);
+createServer(CustomersModule, process.env.PORT);

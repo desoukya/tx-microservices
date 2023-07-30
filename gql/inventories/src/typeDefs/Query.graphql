@@ -1,0 +1,6 @@
+directive @list on FIELD_DEFINITION
+
+extend type Query {
+  inventory(language: String!, input: InventoryInput): Inventory
+  inventories(language: String!, skip: Int, take: Int): [Inventory] @list
+}

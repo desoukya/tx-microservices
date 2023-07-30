@@ -5,7 +5,7 @@ import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/ap
 import { GraphQLModule } from '@nestjs/graphql';
 import { StoresQueryResolver } from './resolvers/Query';
 import { StoresMutationResolver } from './resolvers/Mutation';
-import { CustomerService } from './services/customer.service';
+import { InventoryService } from './services/inventory.service';
 import { ContextMiddleware } from 'tx-shared-middleware';
 import { ResponseInterceptor } from 'tx-shared-interceptors';
 // import { PrismaConnector } from 'tx-shared-connectors';
@@ -43,7 +43,7 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
   providers: [
     StoresQueryResolver,
     StoresMutationResolver,
-    CustomerService,
+    InventoryService,
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
@@ -52,12 +52,12 @@ import { PAGE_OFFSET, PAGE_SIZE } from './constants/pagination';
     // {
     //   provide: 'CONNECTION',
     //   useFactory: () => {
-    //     return new PrismaConnector('customers');
+    //     return new PrismaConnector('inventories');
     //   },
     // }
   ],
 })
-export class CustomersModule implements NestModule {
+export class InventoryModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(ContextMiddleware).forRoutes('/graphql');
   }
