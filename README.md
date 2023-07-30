@@ -1,6 +1,6 @@
 # Candy Store Architecture
 The selected architecture for the candy store project consists of GraphQL microservices using Apollo Federation.
-![image](https://drive.google.com/file/d/1iXy-FWme4LrWaGeQG7mtk1KOiLFhVCS0/)
+![image](https://drive.google.com/uc?export=view&id=1iXy-FWme4LrWaGeQG7mtk1KOiLFhVCS0)
 
 # Technologies & Frameworks
 - Apollo GraphQL
