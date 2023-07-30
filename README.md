@@ -33,5 +33,8 @@ Start the subgraphs first by navigating to the root directory of each microservi
 Start the gateway next by navigating to gql/gateway and running:
 - `yarn start`
 
+# Insomnia Collection
+A simple insomnia collection was [created](https://github.com/desoukya/tx-microservices/blob/main/docs/Insomnia_candy_store_2023-07-30.json) to test the microservices.
+![image](https://drive.google.com/uc?export=view&id=1tsIMBpb-pdBTzi6CyKGEKm6K995Aaqs-)
 
  
