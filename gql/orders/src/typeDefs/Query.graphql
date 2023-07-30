@@ -1,0 +1,6 @@
+directive @list on FIELD_DEFINITION
+
+extend type Query {
+  order(language: String!, input: OrderInput): Order
+  orders(language: String!, skip: Int, take: Int): [Order] @list
+}

@@ -1,5 +1,5 @@
 export class UpdateInventoryDto {
   id: string;
-  name: string;
-  availableQuantity: number;
+  name?: string;
+  availableQuantity?: number;
 }

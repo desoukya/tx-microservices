@@ -7,13 +7,17 @@ datasource db {
 // https://github.com/prisma/prisma/issues/7470#issuecomment-873598065
 generator client {
   provider = "prisma-client-js"
-  output   = "../../../node_modules/@prisma/inventories"
+  output   = "../../../node_modules/@prisma/orders"
   binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
-model Inventory {
+model Order {
   id   String @id @default(uuid())
-  name String
-  manufactureDate DateTime @default(now())
-  availableQuantity Int
+  customerId String
+  inventoryId String
+  storeId String
+  quantity Int @default(1)
+  status String @default("PENDING")
+  createDate DateTime @default(now())
+  updateDate DateTime @default(now())
 }

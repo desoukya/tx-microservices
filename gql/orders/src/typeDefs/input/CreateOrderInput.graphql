@@ -1,0 +1,6 @@
+input CreateOrderInput {
+  customerId: String!
+  inventoryId: String!
+  storeId: String!
+  quantity: Int!
+}

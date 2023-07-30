@@ -1,0 +1,5 @@
+input UpdateOrderInput {
+  id: String!
+  quantity: Int
+  status: String
+}

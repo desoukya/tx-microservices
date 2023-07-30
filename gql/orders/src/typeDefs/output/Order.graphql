@@ -1,0 +1,10 @@
+type Order {
+  id: String!
+  customerId: String!
+  inventoryId: String!
+  storeId: String!
+  quantity: Int!
+  status: String!
+  createDate: String!
+  updateDate: String!
+}

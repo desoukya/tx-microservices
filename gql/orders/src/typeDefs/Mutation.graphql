@@ -1,0 +1,4 @@
+extend type Mutation {
+  createOrder(language: String!, input: CreateOrderInput!): Order
+  updateOrder(language: String!, input: UpdateOrderInput!): Order
+}
